@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/deposits" xmlns:tns="http://www.example.org/deposits" elementFormDefault="qualified">
+	<element name="deposits">
+		<complexType>
+			<sequence>
+				<element name="deposit" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<element name="name" type="string"/>
+							<element name="country" type="string"/>
+							<element name="type" >
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="довостребования"></enumeration>
+										<enumeration value="срочный"></enumeration>
+										<enumeration value="расчетный"></enumeration>
+										<enumeration value="накопительный"></enumeration>
+										<enumeration value="сберегательный"></enumeration>
+									</restriction>
+								</simpleType>
+							</element>
+							<element name="depositor">
+								<complexType>
+									<sequence>
+										<element name="depositor-name" type="string"/>
+										<element name="depositor-surname" type="string"/>
+									</sequence>
+								</complexType>
+							</element>
+							<element name="account-id" >
+								<simpleType>
+									<restriction base="positiveInteger">
+										<pattern value="\d{13}">
+										</pattern>
+									</restriction>
+								</simpleType>
+							</element>
+							<element name="amount-on-deposit" >
+								<simpleType>
+									<restriction base="positiveInteger">
+										<minInclusive value="1" />
+									</restriction>
+								</simpleType>
+							</element>
+							<element name="profitability" type="byte"/>
+							<element name="time-constraints" type="positiveInteger" minOccurs="0"/>						
+							</sequence>
+						<attribute name="id" type="string" use="required"/>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
